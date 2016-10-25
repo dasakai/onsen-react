@@ -1,20 +1,34 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import {Navigator} from 'react-onsenui';
+import React from 'react';
+import { connect } from 'react-redux';
+import { updateActionCreator, setdataActionCreator } from './actions/actionCreators';
 
-class App extends Component {
-    render() {
-        return (
-          <div className="App">
-            <div className="App-header">
-              <h2>Welcome to React</h2>
-            </div>
-            <p className="App-intro">
-              To get started, edit <code>src/App.js</code> and save to reload.
-            </p>
-          </div>
-        );
+function mapStateToProps(state) {
+    return state;
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        handleUpdate: () => { dispatch(updateActionCreator()},
+        handleSetData: (e, data) => { dispatch(setdataActionCreator(data))}
     }
 }
 
-export default App;
+class App extends React.Component {
+    constructor() {
+        super();
+    }
+
+    componentDidMount() {
+        this.props.handleUpdate();
+    }
+
+    render() {
+        return (
+            
+        )
+    }
+}
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(App);
